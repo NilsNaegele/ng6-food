@@ -1,0 +1,105 @@
+<app-deliver-to></app-deliver-to>
+
+<div class="row-fluid">
+  <div class="span3 fm-panel">
+    <h4>Filter Restaurants</h4>
+    <form>
+      <h5>Rating</h5>
+      <ul class="fm-rating pointer">
+        <li class="fm-selected">★</li>
+        <li class="fm-selected">★</li>
+        <li class="fm-selected">★</li>
+        <li>★</li>
+        <li>★</li>
+      </ul>
+      <a disabled="true" (click)="clear()">clear</a>
+
+      <h5>Price</h5>
+      <ul class="fm-rating">
+        <li class="fm-selected">€</li>
+        <li class="fm-selected">€</li>
+        <li>€</li>
+        <li>€</li>
+        <li>€</li>
+      </ul>
+      <a disabled="true" (click)="clear()">clear</a>
+
+      <h5>Cuisine</h5>
+      <div>
+        <label class="checkbox">
+          <input type="checkbox" value="african"> African
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Barbecue
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Cafe
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Czech / Slowak
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> German
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Indian
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Japanese
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Mexican
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Pizza
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Thai
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="african"> Vegetarian
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="span9 fm-panel fm-restaurant-list">
+        <h4>
+          {{ restaurants.length }} Restaurants found!
+        </h4>
+
+        <table class="table table-hover table-striped">
+          <tr>
+            <th><a href>Name &#9650;</a></th>
+            <th><a href>Price </a></th>
+            <th><a href>Rating </a></th>
+          </tr>
+          <tr *ngFor="let restaurant of restaurants">
+            <td>
+                <a routerLink="/details/{{restaurant.id}}">
+                  <img src="../../../assets/images/restaurants/{{restaurant.id}}.jpg" class="img-rounded pull left">
+                  <b>{{ restaurant.name }}</b>
+                </a>
+                <p>{{ restaurant.description }}</p>
+            </td>
+            <td>
+              <ul class="fm-rating pointer">
+                <li class="fm-selected">★</li>
+                <li class="fm-selected">★</li>
+                <li class="fm-selected">★</li>
+                <li>★</li>
+                <li>★</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="fm-rating">
+                <li class="fm-selected">€</li>
+                <li class="fm-selected">€</li>
+                <li>€</li>
+                <li>€</li>
+                <li>€</li>
+              </ul>
+            </td>
+          </tr>
+      </table>
+  </div>
+</div>

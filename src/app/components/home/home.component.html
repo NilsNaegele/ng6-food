@@ -1,0 +1,29 @@
+<div class="fm-customer-bkg img-rounded"></div>
+
+<form #customerForm="ngForm" class="form-horizontal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Get Started</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group">
+        <label for="customerName" class="control-label">Your Name</label>
+        <div class="controls">
+          <input type="text" id="customerName" placeholder="Max Bull"
+                 [(ngModel)]="model.name" name="name" required class="input-medium">
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="address" class="control-label">Delivery Address</label>
+        <div class="controls">
+          <input type="text" id="address" placeholder="118 Unter den Linden, Berlin 13253"
+                [(ngModel)]="model.address" name="address" required class="input-xlarge">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button (click)="findRestaurants(model.name, model.address)"
+              [disabled]="!customerForm.valid"class="btn btn-primary">Find Restaurants!</button>
+    </div>
+  </div>
+</form>
