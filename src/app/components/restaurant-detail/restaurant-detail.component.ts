@@ -10,18 +10,26 @@ import { RestaurantService } from '../../restaurant.service';
   styleUrls: ['./restaurant-detail.component.css']
 })
 export class RestaurantDetailComponent implements OnInit {
+  restaurants: any;
   restaurant: any;
-
   constructor(private route: ActivatedRoute,
-              private restaurantsService: RestaurantService,
+              private restaurantService: RestaurantService,
               private location: Location) { }
 
   ngOnInit() {
+    this.getRestaurant();
   }
 
   getRestaurant() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.restaurantsService.getRestaurant(id).subscribe(restaurant => this.restaurant = restaurant);
+    this.restaurantService.getRestaurants().subscribe(restaurants => {
+      this.restaurants = restaurants;
+      for (let i = 0; i < restaurants.length; i++) {
+        if (restaurants[i].id === id) {
+          this.restaurant = restaurants[i];
+        }
+      }
+     });
   }
 
 }

@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RestaurantService {
-  private restaurantsUrl = 'api/restaurants';
+  private restaurantsUrl = 'api/restaurants1';
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -30,7 +30,7 @@ export class RestaurantService {
 
   getRestaurant(id: string): Observable<any> {
     const url = `${this.restaurantsUrl}/${id}`;
-    return this.http.get<any>(url).pipe(
+    return this.http.get<any>(this.restaurantsUrl).pipe(
       tap(() => console.log(`fetched restaurant id=${id}`)),
       catchError(this.handleError<any>(`getHero id=${id}`))
     );

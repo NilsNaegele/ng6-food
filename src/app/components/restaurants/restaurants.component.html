@@ -5,66 +5,73 @@
     <h4>Filter Restaurants</h4>
     <form>
       <h5>Rating</h5>
-      <ul class="fm-rating pointer">
-        <li class="fm-selected">★</li>
-        <li class="fm-selected">★</li>
-        <li class="fm-selected">★</li>
-        <li>★</li>
-        <li>★</li>
-      </ul>
-      <a disabled="true" (click)="clear()">clear</a>
-
+      <app-star-rating [rating]="starRating" [itemId]="1" (ratingClick)="starRatingClicked($event)">
+      </app-star-rating>
+      <a disabled="true" (click)="starClear()">clear</a>
       <h5>Price</h5>
-      <ul class="fm-rating">
-        <li class="fm-selected">€</li>
-        <li class="fm-selected">€</li>
-        <li>€</li>
-        <li>€</li>
-        <li>€</li>
-      </ul>
-      <a disabled="true" (click)="clear()">clear</a>
-
+      <app-dollar-rating [rating]="dollarRating" [itemId]="1" (ratingClick)="priceRatingClicked($event)">
+        </app-dollar-rating>
+      <a disabled="true" (click)="dollarClear()">clear</a>
       <h5>Cuisine</h5>
       <div>
         <label class="checkbox">
-          <input type="checkbox" value="african"> African
+          <input type="checkbox" (change)="checked('african', $event.target.checked)" 
+                 value="african"> African
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Barbecue
+            <input type="checkbox" (change)="checked('american', $event.target.checked)"
+                   value="american"> American
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Cafe
+            <input type="checkbox" (change)="checked('barbecue', $event.target.checked)"
+                   value="barbecue"> Barbecue
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Czech / Slowak
+            <input type="checkbox" (change)="checked('cafe', $event.target.checked)"
+                   value="cafe"> Cafe
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> German
+            <input type="checkbox" (change)="checked('chinese', $event.target.checked)"
+                   value="chinese"> Chinese
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Indian
+            <input type="checkbox" (change)="checked('czech/slovak', $event.target.checked)"
+                   value="czech/slovak"> Czech/Slovak
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Japanese
+            <input type="checkbox" (change)="checked('german', $event.target.checked)"
+                   value="german"> German
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Mexican
+            <input type="checkbox" (change)="checked('indian', $event.target.checked)"
+                   value="indian"> Indian
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Pizza
+            <input type="checkbox" (change)="checked('japanese', $event.target.checked)"
+                   value="japanese"> Japanese
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Thai
+            <input type="checkbox" (change)="checked('mexican', $event.target.checked)"
+                   value="mexican"> Mexican
         </label>
         <label class="checkbox">
-            <input type="checkbox" value="african"> Vegetarian
+            <input type="checkbox" (change)="checked('pizza', $event.target.checked)"
+                   value="pizza"> Pizza
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" (change)="checked('thai', $event.target.checked)"
+                   value="thai"> Thai
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" (change)="checked('vegetarian', $event.target.checked)"
+                   value="vegetarian"> Vegetarian
         </label>
       </div>
     </form>
   </div>
   <div class="span9 fm-panel fm-restaurant-list">
         <h4>
-          {{ restaurants.length }} Restaurants found!
+          {{ filteredRestaurants.length }} Restaurants found!
         </h4>
 
         <table class="table table-hover table-striped">
@@ -73,7 +80,7 @@
             <th><a href>Price </a></th>
             <th><a href>Rating </a></th>
           </tr>
-          <tr *ngFor="let restaurant of restaurants">
+          <tr *ngFor="let restaurant of filteredRestaurants">
             <td>
                 <a routerLink="/details/{{restaurant.id}}">
                   <img src="../../../assets/images/restaurants/{{restaurant.id}}.jpg" class="img-rounded pull left">
@@ -82,22 +89,10 @@
                 <p>{{ restaurant.description }}</p>
             </td>
             <td>
-              <ul class="fm-rating pointer">
-                <li class="fm-selected">★</li>
-                <li class="fm-selected">★</li>
-                <li class="fm-selected">★</li>
-                <li>★</li>
-                <li>★</li>
-              </ul>
+              <app-rating rating="{{restaurant.price}}" type="currency"></app-rating>
             </td>
             <td>
-              <ul class="fm-rating">
-                <li class="fm-selected">€</li>
-                <li class="fm-selected">€</li>
-                <li>€</li>
-                <li>€</li>
-                <li>€</li>
-              </ul>
+              <app-rating rating="{{restaurant.rating}}"></app-rating>
             </td>
           </tr>
       </table>

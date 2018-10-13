@@ -1,0 +1,8 @@
+<ul *ngIf="TotalLeftDollars" class="fm-rating">
+  <li *ngFor="let d of Dollars" class="fm-selected">$</li>
+  <li *ngFor="let l of TotalLeftDollars">$</li>
+</ul>
+<ul *ngIf="TotalLeftStars" class="fm-rating pointer">
+  <li *ngFor="let s of Stars" class="fm-selected">★</li>
+  <li *ngFor="let t of TotalLeftStars">★</li>
+</ul>
