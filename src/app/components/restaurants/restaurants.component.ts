@@ -2,6 +2,7 @@ import { LocalstorageService } from './../../services/localstorage.service';
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../../restaurant.service';
 
+
 @Component({
   selector: 'app-restaurants',
   templateUrl: './restaurants.component.html',
@@ -12,6 +13,11 @@ export class RestaurantsComponent implements OnInit {
   filteredRestaurants: any[] = [];
   starRating = 0;
   dollarRating = 0;
+
+  sortType: string;
+  sortReverse = false;
+
+
   constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit() {
@@ -32,6 +38,23 @@ export class RestaurantsComponent implements OnInit {
     } else {
       this.filteredRestaurants = this.filteredRestaurants.filter(r => r.cuisine === criteria);
     }
+  }
+
+  sortBy(property) {
+    this.sortType = property;
+    this.sortReverse = !this.sortReverse;
+    this.filteredRestaurants.sort(this.dynamicSort(property));
+  }
+
+  dynamicSort(property) {
+    let sortOrder = -1;
+    if (this.sortReverse) {
+      sortOrder = 1;
+    }
+      return function(a, b) {
+        const result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+      };
   }
 
   starRatingClicked(starRating) {

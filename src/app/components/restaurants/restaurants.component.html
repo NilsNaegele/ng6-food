@@ -7,7 +7,7 @@
       <h5>Rating</h5>
       <app-star-rating [rating]="starRating" [itemId]="1" (ratingClick)="starRatingClicked($event)">
       </app-star-rating>
-      <a disabled="true" (click)="starClear()">clear</a>
+        <a (click)="starClear()">clear</a>
       <h5>Price</h5>
       <app-dollar-rating [rating]="dollarRating" [itemId]="1" (ratingClick)="priceRatingClicked($event)">
         </app-dollar-rating>
@@ -76,9 +76,9 @@
 
         <table class="table table-hover table-striped">
           <tr>
-            <th><a href>Name &#9650;</a></th>
-            <th><a href>Price </a></th>
-            <th><a href>Rating </a></th>
+            <th><a (click)="sortBy('name')">Name &#9650;</a></th>
+            <th><a (click)="sortBy('price')">Price </a></th>
+            <th><a (click)="sortBy('rating')">Rating </a></th>
           </tr>
           <tr *ngFor="let restaurant of filteredRestaurants">
             <td>

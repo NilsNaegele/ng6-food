@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { RestaurantService } from '../../restaurant.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -12,8 +13,14 @@ import { RestaurantService } from '../../restaurant.service';
 export class RestaurantDetailComponent implements OnInit {
   restaurants: any;
   restaurant: any;
+
+  // cart: any;
+  // cartItems: any[] = [];
+
+
   constructor(private route: ActivatedRoute,
               private restaurantService: RestaurantService,
+              public cartService: CartService,
               private location: Location) { }
 
   ngOnInit() {
@@ -30,6 +37,10 @@ export class RestaurantDetailComponent implements OnInit {
         }
       }
      });
+  }
+
+  add(menu, restaurant) {
+    this.cartService.add(menu, restaurant);
   }
 
 }

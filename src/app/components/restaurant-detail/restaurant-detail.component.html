@@ -36,10 +36,13 @@
 
     <ul>
       <li *ngFor="let menu of restaurant?.menuItems">
-          <a href>
-        <span>{{ menu?.name }}</span>
-        <span>{{ menu?.price }}</span>
-        <i class="icon-plus-sign"></i></a>
+      <a>
+          <a (click)="add(menu, restaurant)">
+            <span>{{ menu?.name }}</span>
+            <span>{{ menu?.price }}</span>
+            <i class="icon-plus-sign"></i>
+          </a>
+      </a>
       </li>
     </ul>
 
@@ -49,20 +52,16 @@
     <h4>Your order</h4>
     <form>
       <ul class="unstyled">
-        <li>
-          <a href><i class="icon-remove-sign"></i></a>
-          2 &times; Thin crust broccoli, chicken, and mozarella
-        </li>
-        <li>
-          <a href><i class="icon-remove-sign"></i></a>
-          1 &times; Greek salad
+        <li *ngFor="let item of cartService.items">
+          <a (click)="cartService.remove(item)"><i class="icon-remove-sign"></i></a>
+          {{ item.qty }} &times; {{ item.name }}
         </li>
       </ul>
-      <div class="pull-right">
+      <div class="pull-right" *ngIf="cartService.items.length">
         <a routerLink="/checkout" class="btn">Checkout</a>
       </div>
       <p>
-        <b>Total: $23.99</b>
+        <b>Total: {{ cartService.total() | currency }}</b>
       </p>
     </form>
   </div>

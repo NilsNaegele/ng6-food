@@ -20,14 +20,19 @@ import { DeliverToComponent } from './components/deliver-to/deliver-to.component
 import { RatingComponent } from './components/rating/rating.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { DollarRatingComponent } from './components/dollar-rating/dollar-rating.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'how-it-works', component: HowItWorksComponent },
   { path: 'who-we-are', component: WhoWeAreComponent },
   { path: 'help', component: HelpComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'thank-you', component: ThankYouComponent },
   { path: 'details/:id', component: RestaurantDetailComponent },
   { path: 'restaurants', component: RestaurantsComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
@@ -43,7 +48,9 @@ const routes: Routes = [
     DeliverToComponent,
     RatingComponent,
     StarRatingComponent,
-    DollarRatingComponent
+    DollarRatingComponent,
+    CheckoutComponent,
+    ThankYouComponent
   ],
   imports: [
     BrowserModule,
